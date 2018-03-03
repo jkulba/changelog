@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-from tinydb import TinyDB, Query
+import logging
 
+__author__ = "James Kulba"
 
-db = TinyDB('db.json')
+# Module version
+__version__ = '${version}'
 
-def search
+# Prepare the module logger
+_logger = logging.getLogger(__name__)
+
+def search(package, version):
+    print('Hello Joe')
+
