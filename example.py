@@ -60,13 +60,21 @@ class Changeme(object):
                 "package_date" : package_date
             }
 
-            # doc_id = core.insert(package)
-            # logger.info("Created doc: " + str(doc_id))
+            if core.isApplied(name, version, package_date):
+                logger.debug("Package has been applied.")
+            else:
+                logger.debug("Package has NOT been applied")
+
+            doc_id = core.insert(package)
+            logger.info("Created doc: " + str(doc_id))
+
+
 
             # s = core.search(name, version, package_date)
             # pp.pprint(s)
 
             h = core.history()
+            logger.info(len(h))
             pp.pprint(h)
 
 

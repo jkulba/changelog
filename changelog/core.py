@@ -13,6 +13,13 @@ __version__ = '${version}'
 # _logger = logging.getLogger(__name__)
 _logger = logging.getLogger('changeLog')
 
+def isApplied(package, version, package_date):
+    if len(search(package, version, package_date)) > 0:
+        return True
+    else:
+        return False
+
+
 def search(package, version, package_date):
 
     try:
@@ -41,7 +48,8 @@ def history():
     try:
         Package = Query()
         packages = db.table('packages')
-        return packages.search(Package.name.search('.*'))
+        return packages.all()
+        # return packages.search(Package.name.search('.*'))
     except IndexError:
         _logger.error(e)
         pass
