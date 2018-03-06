@@ -1,8 +1,9 @@
-{  
+{
     "name":"device_update_package",
     "version":"1.3.4",
-    "packages":[  
-       {  
+    "timestamp":"2018-03-01T12:01:01.947Z",
+    "packages":[
+       {
           "seq":1,
           "name":"SampleApp1",
           "version":"v3.4.0",
@@ -10,7 +11,7 @@
           "archive":"sample_app_1.zip",
           "command": ["./install.sh", "command string"]
        },
-       {  
+       {
         "seq":2,
         "name":"SampleApp2",
         "version":"v1.0.1",

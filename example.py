@@ -38,19 +38,50 @@ fh.setFormatter(formatter)
 logger.addHandler(ch)
 logger.addHandler(fh)
 
+
+class Changeme(object):
+
+    '''The Changeme object'''
+
+    def __init__(self):
+        logger.info('Changelog tool initializing')
+
+    def load_manifest(self, path):
+
+        with open(path) as json_file:
+            data = json.load(json_file)
+            name = data['name']
+            version = data['version']
+            timestamp = data['timestamp']
+            package = {
+                "name" : name,
+                "version" : version,
+                "timestamp" : timestamp
+            }
+
+            core.insert(package)
+
+
+
+
 def main():
     '''Main entry point for the changelog CLI.'''
     parser = argparse.ArgumentParser(
         prog='Example Changelog Usage',
-        description='Execute Device Updater',
+        description='Execute example changelog',
         usage='%(prog)s [options]')
-    parser.add_argument('--package', dest='package_path', action='store',  required=True, help='Required parameter to complete path and package file.')
+    parser.add_argument('--manifest', dest='manifest_path', action='store',  required=True, help='Required parameter of the complete path of manifest file.')
     parser.add_argument('--version',
         action='version',
         version='%(prog)s ' + __version__)
     args = parser.parse_args()
 
-    core.search('package', 'version')
+    changeme = Changeme()
+
+    if args.manifest_path:
+        changeme.load_manifest(args.manifest_path)
+
+
 
 if __name__ == '__main__':
     main()
