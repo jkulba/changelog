@@ -38,6 +38,7 @@ fh.setFormatter(formatter)
 logger.addHandler(ch)
 logger.addHandler(fh)
 
+pp = pprint.PrettyPrinter(indent=2)
 
 class Changeme(object):
 
@@ -52,14 +53,22 @@ class Changeme(object):
             data = json.load(json_file)
             name = data['name']
             version = data['version']
-            timestamp = data['timestamp']
+            package_date = data['package_date']
             package = {
                 "name" : name,
                 "version" : version,
-                "timestamp" : timestamp
+                "package_date" : package_date
             }
 
-            core.insert(package)
+            # doc_id = core.insert(package)
+            # logger.info("Created doc: " + str(doc_id))
+
+            # s = core.search(name, version, package_date)
+            # pp.pprint(s)
+
+            h = core.history()
+            pp.pprint(h)
+
 
 
 
